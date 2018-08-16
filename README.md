@@ -40,6 +40,6 @@ At last, you can choose any video player plugin that support HLS, I've only test
 
 You might consider configuring some variables.
 
-```ffmpeg_path``` - if u don't want to store ffmpeg in your PATH variable, you might want to pass it your ffmpeg path
-```main_path``` - this is where you store your camera directories, usually /var/www/static/cameras
-```log_path``` - this is where you store logs, usually /var/www/static/cameras/log.log
+- ffmpeg_path - if u don't want to store ffmpeg in your PATH variable, you might want to pass it your ffmpeg path
+- main_path - this is where you store your camera directories, usually /var/www/static/cameras
+- log_path - this is where you store logs, usually /var/www/static/cameras/log.log
