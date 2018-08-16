@@ -18,15 +18,17 @@ python3 preview.py bigbuckbunny rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.
 ```
 
 Then, script will create your main project directory which will look like that:
-    .
-    ├── kamerowanie                   # Main path
-    │   ├── bigbuckbunny              # Camera directory name (cam_key)
-    │   │   ├── live                  # Directory to store processed stream (HLS files)
-    │   │   │   ├── index.m3u8        # Index file which stores most recent segment (.ts file)
-    │   │   │   └── ...               # Segment files (.ts files)
-    │   │   ├── start.sh              # Script which grabs camera feed and transcodes it into HLS format
-    │   │   ├── pid.txt               # PID of ffmpeg
-    └── ...                           # Other cameras
+```
+.
+├── kamerowanie                   # Main path
+│   ├── bigbuckbunny              # Camera directory name (cam_key)
+│   │   ├── live                  # Directory to store processed stream (HLS files)
+│   │   │   ├── index.m3u8        # Index file which stores most recent segment (.ts file)
+│   │   │   └── ...               # Segment files (.ts files)
+│   │   ├── start.sh              # Script which grabs camera feed and transcodes it into HLS format
+│   │   ├── pid.txt               # PID of ffmpeg
+└── ...                           # Other cameras
+```
     
 Then you can share this directory using http server or a websocket.
 e.g.
