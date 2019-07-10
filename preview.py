@@ -3,7 +3,7 @@ import sys
 import logging
 
 from time import sleep
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 # ffmpeg command which is called to start streaming new camera through rtsp address
 # i've decided to use hls muxer to be able to easily get rid of old segments
@@ -17,12 +17,13 @@ cmd = "{} -loglevel panic -hide_banner -nostats -fflags nobuffer -rtsp_transport
 # If ffmpeg is not in your PATH variable then you should set absolute path to ffmpeg here.
 ffmpeg_path = Path("ffmpeg")
 # This is should be your www/static path.
-main_path = Path("/home/kamerowanie/camera")
+main_path = Path("./camera")
 # Path to store log file
-log_path = Path("/home/kamerowanie/camera/log.log")
+log_path = Path("./log.log")
 
 script = """#!/bin/bash
 {} & echo $! > {}
+sleep 10
 """
 
 def main(cam_key, rtsp_address):
@@ -48,8 +49,8 @@ def main(cam_key, rtsp_address):
         with open(str(Path(cam_path / "start.sh")), "w") as f:
             f.write(
                 script.format(
-                    cmd.format(ffmpeg_path, rtsp_address, segment_path, index_path),
-                    str(cam_path / "pid.txt")
+                    cmd.format(PurePosixPath(ffmpeg_path), rtsp_address, PurePosixPath(segment_path), PurePosixPath(index_path)),
+                    PurePosixPath(cam_path / "pid.txt")
                 )
             )
     except:
@@ -67,7 +68,7 @@ def main(cam_key, rtsp_address):
     # Sleep 3 seconds to give ffmpeg time to initialize
     sleep(3) 
     try:
-        with open(str(Path(cam_path / "pid.txt"))) as f:
+        with open(Path(cam_path / "pid.txt")) as f:
             pid = f.read()
     except:
         logging.error("Couldn't get PID!")
