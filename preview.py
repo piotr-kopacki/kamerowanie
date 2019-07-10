@@ -23,7 +23,6 @@ log_path = Path("./log.log")
 
 script = """#!/bin/bash
 {} & echo $! > {}
-sleep 10
 """
 
 def main(cam_key, rtsp_address):
